@@ -9,12 +9,20 @@ export abstract class ShapeBase {
         this.localY = localY;
     }
 
-    public setX(value: number): void {
+    public setLocalX(value: number): void {
         this.localX = value;
     }
 
-    public setY(value: number): void {
+    public setLocalY(value: number): void {
         this.localY = value;
+    }
+
+    public getLocalX(): number {
+        return this.localX;
+    }
+
+    public getLocalY(): number {
+        return this.localY;
     }
 
 }

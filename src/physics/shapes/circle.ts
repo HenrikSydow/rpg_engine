@@ -9,4 +9,8 @@ export class Circle extends ShapeBase {
         this.radius = radius;
     }
 
+    public getRadius(): number {
+        return this.radius;
+    }
+
 }
