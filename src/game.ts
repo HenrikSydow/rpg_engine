@@ -10,6 +10,9 @@ export class Game {
     private readonly ctx2d: CanvasRenderingContext2D = this.canvas.getContext("2d") as CanvasRenderingContext2D;
 
     constructor() {
+        //Reset static classes
+        this.reset();
+
         // Bind mousehandler:
         document.onmousedown    = MouseHandler.handlePressed;
         document.onmouseup      = MouseHandler.handleReleased;
@@ -57,6 +60,10 @@ export class Game {
 
         // Cleanup:
         ctx.setTransform(1, 0, 0, 1, 0, 0);
+    }
+
+    private reset(): void {
+        GameObjectHandler.clear();
     }
 
 }
