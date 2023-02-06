@@ -6,8 +6,8 @@ import { MouseHandler } from "./mouseHandler.js";
 import { HudMessageDisplay } from "./hud/hudMessageDisplay.js";
 
 export class Game {
-    private static readonly canvas: HTMLCanvasElement = document.getElementById("gameCanvas") as HTMLCanvasElement;
-    private static readonly ctx2d: CanvasRenderingContext2D = Game.canvas.getContext("2d") as CanvasRenderingContext2D;
+    private readonly canvas: HTMLCanvasElement = document.getElementById("gameCanvas") as HTMLCanvasElement;
+    private readonly ctx2d: CanvasRenderingContext2D = this.canvas.getContext("2d") as CanvasRenderingContext2D;
 
     constructor() {
         // Bind mousehandler:
@@ -37,7 +37,7 @@ export class Game {
     }
 
     private render(): void {
-        let ctx: CanvasRenderingContext2D = Game.ctx2d;
+        let ctx: CanvasRenderingContext2D = this.ctx2d;
         ctx.canvas.width = window.innerWidth;
         ctx.canvas.height = window.innerHeight;
 
