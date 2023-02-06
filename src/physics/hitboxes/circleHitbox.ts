@@ -1,7 +1,7 @@
-import { Vector2D } from "../maths/vector2D.js";
-import { Hitbox } from "./hitbox.js";
+import { Vector2D } from "../../maths/vector2D.js";
+import { HitboxBase } from "./hitboxBase.js";
 
-export class CircleHitbox extends Hitbox {
+export class CircleHitbox extends HitboxBase {
 
     protected radius: number;
 

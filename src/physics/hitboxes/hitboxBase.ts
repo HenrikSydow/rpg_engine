@@ -1,5 +1,5 @@
 
-export abstract class Hitbox {
+export abstract class HitboxBase {
 
     protected x: number;
     protected y: number;
@@ -25,6 +25,6 @@ export abstract class Hitbox {
         return this.y;
     }
 
-    public abstract intersects(hitbox: Hitbox): boolean;
+    public abstract intersects(hitbox: HitboxBase): boolean;
 
 }
