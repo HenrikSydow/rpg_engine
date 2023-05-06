@@ -8,5 +8,9 @@
         "noEmitOnError": true,
         "noImplicitOverride": true
         // "sourceMap": true
+    },
+    "typedocOptions": {
+        "entryPoints": ["src/game.ts"],
+        "out": "docs"
     }
 }
