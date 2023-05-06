@@ -1,2 +1,2 @@
 cd %~dp0\..
-npx typedoc
+npx typedoc src

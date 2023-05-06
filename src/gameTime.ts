@@ -31,7 +31,7 @@ export abstract class GameTime {
     /**
      * Takes any number and normalizes it using the delta time,
      * to make values consistent during varying execution times.
-     * Examples might be movement events of Sprites on the screen.
+     * Examples might be movement events of sprites on the screen.
      * @param value A value to be normalized.
      * @returns The normalized value.
      */
