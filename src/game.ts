@@ -5,10 +5,17 @@ import { KeyHandler } from "./keyHandler.js";
 import { MouseHandler } from "./mouseHandler.js";
 import { HudMessageDisplay } from "./hud/hudMessageDisplay.js";
 
+/**
+ * Main class of the engine.
+ * Initializes all game components / gameObjects.
+ */
 export class Game {
     private static readonly canvas: HTMLCanvasElement = document.getElementById("gameCanvas") as HTMLCanvasElement;
     private static readonly ctx2d: CanvasRenderingContext2D = Game.canvas.getContext("2d") as CanvasRenderingContext2D;
 
+    /**
+     * The constructor for the Game class.
+     */
     constructor() {
         // Bind mousehandler:
         document.onmousedown    = MouseHandler.handlePressed;
@@ -23,6 +30,9 @@ export class Game {
         window.requestAnimationFrame(this.gameloop.bind(this));
     }
 
+    /**
+     * The gameloop, which calls update and render methods.
+     */
     public gameloop(): void {
         this.update();
         this.render();
@@ -30,12 +40,20 @@ export class Game {
         window.requestAnimationFrame(this.gameloop.bind(this));
     }
 
+    /**
+     * The main update method of the entire game engine.
+     * Called by the gameloop.
+     */
     private update(): void {
         GameTime.update();
         GameObjectHandler.update();
         HudMessageDisplay.update();
     }
 
+    /**
+     * The main render method of the entire game engine.
+     * Called by the gameloop.
+     */
     private render(): void {
         let ctx: CanvasRenderingContext2D = Game.ctx2d;
         ctx.canvas.width = window.innerWidth;
@@ -62,6 +80,9 @@ export class Game {
 }
 
 // ENTRY POINT & Composition root: ===========================================
+/**
+ * Entry point for the application / game engine and composition root.
+ */
 window.onload = () => {
     new Game();
 }
