@@ -49,6 +49,8 @@ export class Hitbox {
         if (!this.isEnabled()) {
             return false;
         }
+
+        let intersects: boolean = false;
         hitbox.getShapes().forEach((shape: ShapeBase) => {
             let globalCorShape: [number, number] = [
                 hitbox.getX() + shape.getLocalX(),
@@ -64,20 +66,25 @@ export class Hitbox {
                     let circleShape: Circle = shape as Circle;
                     if (thisShape instanceof Circle) {
                         let thisCircleShape: Circle = thisShape as Circle;
-                        this.intersectsCircleCircle(globalCorShape, circleShape, globalCorThisShape, thisCircleShape);
+                        intersects = this.intersectsCircleCircle(globalCorShape, circleShape, globalCorThisShape, thisCircleShape);
                     } else if (thisShape instanceof Rectangle) {
                         let thisRectShape: Rectangle = thisShape as Rectangle;
-                        this.intersectsRectangleCircle(globalCorThisShape, thisRectShape, globalCorShape, circleShape);
+                        intersects = this.intersectsRectangleCircle(globalCorThisShape, thisRectShape, globalCorShape, circleShape);
                     }
                 } else if (shape instanceof Rectangle) {
                     let rectShape: Rectangle = shape as Rectangle;
                     if (thisShape instanceof Circle) {
                         let thisCircleShape: Circle = thisShape as Circle;
-                        this.intersectsRectangleCircle(globalCorShape, rectShape, globalCorThisShape, thisCircleShape);
+                        intersects = this.intersectsRectangleCircle(globalCorShape, rectShape, globalCorThisShape, thisCircleShape);
+                    }
+                    else if (thisShape instanceof Rectangle) {
+                        let thisRectangleShape: Rectangle = thisShape as Rectangle;
+                        intersects = this.intersectsRectangleRectangle(globalCorShape, rectShape, globalCorThisShape, thisRectangleShape);
                     }
                 }
             });
         });
+        return intersects;
     }
 
     private intersectsCircleCircle(globalCorOne: [number, number], circleOne: Circle, globalCorTwo: [number, number], circleTwo: Circle): boolean {
@@ -87,6 +94,14 @@ export class Hitbox {
 
     private intersectsRectangleCircle(globalCorOne: [number, number], rect: Rectangle, globalCorTwo: [number, number], circle: Circle): boolean {
         throw new Error("method not implemented");
+    }
+
+    private intersectsRectangleRectangle(globalCorOne: [number, number], rectOne: Rectangle, globalCorTwo: [number, number], rectTwo: Rectangle) {
+        return (globalCorOne[0] <= globalCorTwo[0] + rectTwo.getWidth() &&
+                globalCorTwo[0] <= globalCorOne[0] + rectOne.getWidth() &&
+                globalCorOne[1] <= globalCorTwo[1] + rectTwo.getHeight() &&
+                globalCorTwo[1] <= globalCorOne[1] + rectOne.getHeight()
+            );
     }
 
     public contains(hitbox: Hitbox): boolean {
