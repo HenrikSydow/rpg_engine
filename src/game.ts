@@ -10,13 +10,16 @@ import { HudMessageDisplay } from "./hud/hudMessageDisplay.js";
  * Initializes all game components / gameObjects.
  */
 export class Game {
-    private static readonly canvas: HTMLCanvasElement = document.getElementById("gameCanvas") as HTMLCanvasElement;
-    private static readonly ctx2d: CanvasRenderingContext2D = Game.canvas.getContext("2d") as CanvasRenderingContext2D;
+    private readonly canvas: HTMLCanvasElement = document.getElementById("gameCanvas") as HTMLCanvasElement;
+    private readonly ctx2d: CanvasRenderingContext2D = this.canvas.getContext("2d") as CanvasRenderingContext2D;
 
     /**
      * The constructor for the Game class.
      */
     constructor() {
+        //Reset static classes
+        this.reset();
+
         // Bind mousehandler:
         document.onmousedown    = MouseHandler.handlePressed;
         document.onmouseup      = MouseHandler.handleReleased;
@@ -55,7 +58,7 @@ export class Game {
      * Called by the gameloop.
      */
     private render(): void {
-        let ctx: CanvasRenderingContext2D = Game.ctx2d;
+        let ctx: CanvasRenderingContext2D = this.ctx2d;
         ctx.canvas.width = window.innerWidth;
         ctx.canvas.height = window.innerHeight;
 
@@ -75,6 +78,10 @@ export class Game {
 
         // Cleanup:
         ctx.setTransform(1, 0, 0, 1, 0, 0);
+    }
+
+    private reset(): void {
+        GameObjectHandler.clear();
     }
 
 }
