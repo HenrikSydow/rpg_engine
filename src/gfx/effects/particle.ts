@@ -16,11 +16,19 @@ export class Particle extends GameObject {
         this.velX = this.velY = 0;
     }
 
+    /**
+     * Updates this object. Sets the new x and y coordinates.
+     */
     public override update(): void {
         this.x += GameTime.normalize(this.velX);
         this.y += GameTime.normalize(this.velY);
     }
 
+    /**
+     * Renders this object if this alpha value
+     * is greater zero.
+     * @param ctx A rendering context.
+     */
     public override render(ctx: CanvasRenderingContext2D): void {
         if (this.alpha <= 0) {
             return;
@@ -33,10 +41,18 @@ export class Particle extends GameObject {
         ctx.globalAlpha = previousAlpha;
     }
 
+    /**
+     * Returns this particles alpha value.
+     * @returns alpha value
+     */
     public getAlpha(): number {
         return this.alpha;
     }
 
+    /**
+     * Sets this particles alpha value.
+     * @param value new alpha value
+     */
     public setAlpha(value: number): void {
         this.alpha = value;
     }
