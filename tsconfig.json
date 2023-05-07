@@ -17,8 +17,10 @@
         //     "src/keyHandler.ts",
         //     "src/mouseHandler.ts"
         // ],
-        "entryPointStrategy": "expand",
+        // "entryPointStrategy": "expand",
         "out": "docs",
-        "name": "RPG_Engine"
+        "name": "RPG_Engine",
+        "entryPoints": ["./src"],
+        "sort": ["source-order"],
     }
 }
