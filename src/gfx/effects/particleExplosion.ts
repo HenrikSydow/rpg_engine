@@ -6,6 +6,10 @@ import { Vector2D } from "../../maths/vector2D.js";
 import { Color } from "../color.js";
 import { Particle } from "./particle.js";
 
+/**
+ * A gfx effect displaying particles in varying sizes and colors,
+ * exploding into random directions from a given point.
+ */
 export class ParticleExplosion extends GameObject {
 
     private particles: Array<Particle> = [];
@@ -13,6 +17,17 @@ export class ParticleExplosion extends GameObject {
     private fadeDistance: number;
     private amount: number;
 
+    /**
+     * Creates a new ParticleExplosion.
+     * @param x The explosions x coordinate.
+     * @param y The explosions y coordinate.
+     * @param amount The amount of particles to generate.
+     * @param color The color of the generated particles.
+     * @param fadeDistance The distance when particles should begin to fade out.
+     * @param maxVelocity The maximum velocity of particles.
+     * @param minParticleSize The minimum velocity of particles.
+     * @param maxParticleSize The maximum size of particles.
+     */
     constructor(
         x: number, y: number, amount: number, color: Color,
         fadeDistance: number = 100, maxVelocity: number = 4,
@@ -58,6 +73,10 @@ export class ParticleExplosion extends GameObject {
         return positiveParticles;
     }
 
+    /**
+     * Updates this object.
+     * Updates all particles belonging to this effect as well.
+     */
     public override update(): void {
         this.particles.forEach( particle => {
             if (
@@ -75,6 +94,10 @@ export class ParticleExplosion extends GameObject {
         this.particles.forEach( particle => particle.update() );
     }
 
+    /**
+     * Renders this object.
+     * @param ctx A rendering context.
+     */
     public override render(ctx: CanvasRenderingContext2D): void {
         this.particles.forEach( particle => particle.render(ctx) );
     }
