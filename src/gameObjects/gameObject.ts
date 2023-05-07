@@ -1,8 +1,27 @@
 
+/**
+ * The base class for all objects present in the game.
+ * All instances of this type should be added to the GameObjectHandler.
+ */
 export abstract class GameObject {
+    /**
+     * The GameObject's x coordinate.
+     */
     protected x: number;
+
+    /**
+     * The GameObject's y coordinate.
+     */
     protected y: number;
+
+    /**
+     * The GameObject's x velocity.
+     */
     protected velX: number = 0;
+
+    /**
+     * The GameObject's y velocity.
+     */
     protected velY: number = 0;
     
     constructor(x: number, y: number) {
@@ -10,7 +29,18 @@ export abstract class GameObject {
         this.y = y;
     }
 
+    /**
+     * The update method of each GameObject will be called by it's
+     * GameObjectHandler.
+     * Must be implemented by child classes.
+     */
     public abstract update(): void;
+
+    /**
+     * The render method of each GameObject will be called by it's
+     * GameObjectHandler.
+     * Must be implemented by child classes.
+     */
     public abstract render(ctx: CanvasRenderingContext2D): void;
 
     public setVelX(velX: number): void {
