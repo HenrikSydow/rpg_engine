@@ -1,6 +1,9 @@
 import { GameTime } from "../gameTime.js";
 import { Color } from "../gfx/color.js";
 
+/**
+ * A class for displaying hud messages on the screen.
+ */
 export abstract class HudMessageDisplay {
 
     private static MESSAGES: Array<Message> = [];
@@ -8,6 +11,11 @@ export abstract class HudMessageDisplay {
     constructor() {
     }
 
+    /**
+     * Adds a new message to be displayed on the screen.
+     * @param text Some message.
+     * @param type The type of message to be displayed.
+     */
     public static addMessage(text: string, type: HudMessage.Type): void {
         let newMessage: Message;
         switch (type) {
@@ -20,6 +28,10 @@ export abstract class HudMessageDisplay {
         }
     }
 
+    /**
+     * Updates the HudMessageDisplay. Must be called somewhere
+     * in the gameloop during updates.
+     */
     public static update(): void {
         HudMessageDisplay.MESSAGES.forEach(message => {
             if (Date.now() - message.getCreationTime() >= message.getFadeTime()) {
@@ -32,6 +44,11 @@ export abstract class HudMessageDisplay {
         });
     }
 
+    /**
+     * Displays the messages of this object using the
+     * given rendering context.
+     * @param ctx A CanvasRenderingContext2D.
+     */
     public static render(ctx: CanvasRenderingContext2D): void {
         // Save default settings: ======================
         let defaultTextAlign = ctx.textAlign;
@@ -54,7 +71,14 @@ export abstract class HudMessageDisplay {
 
 }
 
+/**
+ * This namespace contains all compatible constants
+ * for the HudMessageDisplay class.
+ */
 export namespace HudMessage {
+    /**
+     * Contains the valid types of HudMessages.
+     */
     export enum Type {
         CenterScreenBigMessage
     }
