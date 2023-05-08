@@ -10,17 +10,17 @@
         // "sourceMap": true
     },
     "typedocOptions": {
-        // "entryPoints": [
-        //     "src/game.ts",
-        //     "src/fpsCounter.ts",
-        //     "src/gameTime.ts",
-        //     "src/keyHandler.ts",
-        //     "src/mouseHandler.ts"
-        // ],
-        // "entryPointStrategy": "expand",
         "out": "docs",
         "name": "RPG_Engine",
-        "entryPoints": ["./src"],
+        "entryPoints": [
+            "./src",
+            "./src/cookies",
+            "./src/gameObjects",
+            "./src/gfx",
+            "./src/hud",
+            "./src/maths",
+            "./src/physics",
+        ],
         "sort": ["source-order"],
     }
 }
