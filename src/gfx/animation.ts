@@ -1,4 +1,8 @@
 
+/**
+ * An Animation consists out of an Array of HTMLImageElements
+ * which can be cycled through. Should be added to an instance of {@link AnimationHandler}.
+ */
 export class Animation {
 
     /** All the frames of this animation. */

@@ -1,5 +1,10 @@
 import { Animation } from "./animation.js";
 
+/**
+ * The AnimationHandler handles added animations.
+ * Updates, renders them and changes their location on screen,
+ * according to its own position.
+ */
 export class AnimationHandler {
 
     /** The animations added to this handler. */
