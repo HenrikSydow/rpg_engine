@@ -142,6 +142,21 @@ export class Animation {
         this.y = y;
     }
 
+    /** Setter for scale. */
+    public setScale(scale: number): void {
+        scale = scale;
+    }
+
+    /** Setter for x offset. */
+    public setXOffset(offset: number): void {
+        this.xOffset = offset;
+    }
+
+    /** Setter for y offset. */
+    public setYOffset(offset: number): void {
+        this.yOffset = offset;
+    }
+
     /** Getter for playcount property. */
     public getPlayCount(): number {
         return this.playCount;
