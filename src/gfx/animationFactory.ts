@@ -1,8 +1,16 @@
 import { Animation } from "./animation.js";
 import { AnimationConstants } from "./animationConstants.js";
 
+/**
+ * A factory class for all {@link Animation} instances.
+ */
 export abstract class AnimationFactory {
 
+    /**
+     * Builds an {@link Animation} with the given name / id. See: {@link AnimationConstants.AnimationNames}
+     * @param animationId An animation id / name. See: {@link AnimationConstants.AnimationNames}
+     * @returns A new animation.
+     */
     static buildAnimation(animationId: String): Animation {
         let animation: Animation;
 

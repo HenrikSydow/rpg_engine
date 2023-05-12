@@ -8,3 +8,4 @@ export * from "./gfxRegistry";
 export * from "./animation";
 export * from "./animationHandler";
 export * from "./animationConstants";
+export * from "./animationFactory";
