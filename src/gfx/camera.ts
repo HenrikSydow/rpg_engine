@@ -1,4 +1,5 @@
 import { GameObject } from "../gameObjects/gameObject.js";
+import { GameTime } from "../gameTime.js";
 
 /**
  * A camera which can be moved across the screen, track GameObjects
@@ -83,9 +84,10 @@ export class Camera extends GameObject {
         return this.zoom;
     }
 
-    /** Updates the camera. */
+    /** Updates the camera. Handles movement by camera's velocity. */
     public update(): void {
-
+        this.x += GameTime.normalize(this.velX);
+        this.y += GameTime.normalize(this.velY);
     }
 
     /** Renders the camera. */
