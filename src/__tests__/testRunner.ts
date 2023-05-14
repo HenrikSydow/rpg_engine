@@ -57,7 +57,8 @@ export abstract class TestRunner {
         console.log("\n".padEnd(51, "="));
         console.log(`Executed a total of ${this.colorTextYellow}${allClassesTestCount} tests${this.colorTextDefault}:`);
         console.log(`   ${this.colorTextYellow}${allClassesTestCount - allClassesTestFails} tests${this.colorTextDefault} ${this.colorTextGreen}${this.boldText}passed${this.colorTextDefault}`);
-        console.log(`   ${this.colorTextYellow}${allClassesTestFails} tests${this.colorTextDefault} ${this.colorTextRed}${this.boldText}failed${this.colorTextDefault}`);
+        if (allClassesTestFails > 0)
+            console.log(`   ${this.colorTextYellow}${allClassesTestFails} tests${this.colorTextDefault} ${this.colorTextRed}${this.boldText}failed${this.colorTextDefault}`);
     }
 
     private static runMethod(instance, methodName: string): boolean {
