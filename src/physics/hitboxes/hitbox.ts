@@ -121,7 +121,7 @@ export class Hitbox {
 
     private intersectsCircleCircle(globalCorOne: [number, number], circleOne: Circle, globalCorTwo: [number, number], circleTwo: Circle): boolean {
         let distance: number = new Vector2D(globalCorOne[0], globalCorOne[1], globalCorTwo[0], globalCorTwo[1]).getLength();
-        return distance > (circleOne.getRadius() + circleTwo.getRadius());
+        return distance < (circleOne.getRadius() + circleTwo.getRadius());
     }
 
     private intersectsRectangleCircle(globalCorOne: [number, number], rect: Rectangle, globalCorTwo: [number, number], circle: Circle): boolean {
