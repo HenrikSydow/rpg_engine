@@ -88,11 +88,7 @@ export class Camera extends GameObject {
     public update(): void {
         this.x += GameTime.normalize(this.velX);
         this.y += GameTime.normalize(this.velY);
-    }
-
-    /** Renders the camera. */
-    public render(cxt: CanvasRenderingContext2D): void {
-        cxt.scale(this.zoom, this.zoom);
+        
         if (this.trackedObject != null) {
             let offsetX: number = window.innerWidth / 2;
             let offsetY: number = window.innerHeight / 2;
@@ -101,6 +97,11 @@ export class Camera extends GameObject {
                 this.trackedObject.getY() - offsetY
             );
         }
+    }
+
+    /** Renders the camera. */
+    public render(cxt: CanvasRenderingContext2D): void {
+        cxt.scale(this.zoom, this.zoom);
         cxt.translate(-this.x, -this.y);
     }
 
