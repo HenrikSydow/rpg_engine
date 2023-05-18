@@ -167,4 +167,9 @@ export class Animation {
         return this.frames[this.currentFrame];
     }
 
+    /** Getter for all frames. */
+    public getFrames(): Array<HTMLImageElement> {
+        return this.frames;
+    }
+
 }
