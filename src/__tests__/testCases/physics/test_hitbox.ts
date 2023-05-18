@@ -38,6 +38,34 @@ export class Test_Hitbox {
         });
     }
 
+    public Test_RectRectDoNotIntersect(): void {
+        let testCases: Array<Array<Hitbox>> = [
+            [
+                new Hitbox(0, 0, [new Rectangle(0, 0, 10, 10)]),
+                new Hitbox(100, 100, [new Rectangle(0, 0, 1, 1)]),
+            ],
+            [
+                new Hitbox(-20, -20, [new Rectangle(0, 0, 10, 10)]),
+                new Hitbox(0, 0, [new Rectangle(0, 0, 10, 10)]),
+            ],
+            [
+                new Hitbox(-20, -20, [
+                    new Rectangle(0, 0, 10, 10),
+                    new Rectangle(-300, 0, 200, 200),
+                ]),
+                new Hitbox(0, 0, [new Rectangle(0, 0, 10, 10)]),
+            ],
+            [
+                new Hitbox(0, 0, [new Rectangle(-6, 0, 10, 10)]),
+                new Hitbox(0, 0, [new Rectangle(9, 0, 10, 10)]),
+            ],
+        ];
+
+        testCases.forEach(testCase => {
+            Test.assertFalse(testCase[0].intersects(testCase[1]));
+        });
+    }
+
     public Test_CircleCircleIntersects(): void {
         let testCases: Array<Array<Hitbox>> = [
             [
@@ -63,6 +91,37 @@ export class Test_Hitbox {
 
         testCases.forEach(testCase => {
             Test.assertTrue(testCase[0].intersects(testCase[1]));
+        });
+    }
+
+    public Test_CircleCircleDoNotIntersect(): void {
+        let testCases: Array<Array<Hitbox>> = [
+            [
+                new Hitbox(0, 0, [new Circle(0, 0, 100)]),
+                new Hitbox(200, 0, [new Circle(0, 0, 100)])
+            ],
+            [
+                new Hitbox(0, 0, [new Circle(0, 0, 100)]),
+                new Hitbox(-200, 0, [new Circle(0, 0, 100)])
+            ],
+            [
+                new Hitbox(0, 0, [new Circle(-200, 0, 100)]),
+                new Hitbox(0, 0, [new Circle(0, 0, 100)])
+            ],
+            [
+                new Hitbox(0, 0, [
+                    new Circle(-200, 0, 100),
+                    new Circle(0, -200, 100)
+                ]),
+                new Hitbox(0, 0, [
+                    new Circle(-50, 0, 100),
+                    new Circle(30, 0, 100)
+                ])
+            ],
+        ];
+
+        testCases.forEach(testCase => {
+            Test.assertFalse(testCase[0].intersects(testCase[1]));
         });
     }
 

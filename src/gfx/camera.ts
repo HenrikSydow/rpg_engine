@@ -90,8 +90,8 @@ export class Camera extends GameObject {
         this.y += GameTime.normalize(this.velY);
         
         if (this.trackedObject != null) {
-            let offsetX: number = window.innerWidth / 2;
-            let offsetY: number = window.innerHeight / 2;
+            let offsetX: number = globalThis.innerWidth / 2;
+            let offsetY: number = globalThis.innerHeight / 2;
             this.setLocation(
                 this.trackedObject.getX() - offsetX,
                 this.trackedObject.getY() - offsetY

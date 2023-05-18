@@ -1,7 +1,9 @@
 import { AnimationConstants } from "../gfx/animationConstants.js";
 import { AnimationFactory } from "../gfx/animationFactory.js";
 import { AnimationHandler } from "../gfx/animationHandler.js";
-import { HitboxConstants, HitboxFactory, HitboxHandler } from "../physics/index.js";
+import { HitboxConstants } from "../physics/hitboxes/hitboxConstants.js";
+import { HitboxFactory } from "../physics/hitboxes/hitboxFactory.js";
+import { HitboxHandler } from "../physics/hitboxes/hitboxHandler.js";
 import { GameObject } from "./gameObject.js";
 import { GameObjectConstants } from "./gameObjectConstants.js";
 

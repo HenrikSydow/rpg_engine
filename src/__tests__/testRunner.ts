@@ -1,3 +1,4 @@
+import { Test_Animation } from "./testCases/gfx/test_animation.js";
 import { Test_Camera } from "./testCases/gfx/test_camera.js";
 import { Test_Hitbox } from "./testCases/physics/test_hitbox.js";
 
@@ -5,7 +6,8 @@ export abstract class TestRunner {
     
     private static testClasses = [
         Test_Hitbox,
-        Test_Camera
+        Test_Camera,
+        Test_Animation
     ];
 
     private static colorTextRed: String = "[31m";

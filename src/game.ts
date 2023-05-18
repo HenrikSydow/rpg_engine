@@ -27,10 +27,10 @@ export class Game {
         document.onmousemove    = MouseHandler.handleMoved;
 
         // Bind keyhandler:
-        window.addEventListener("keydown", KeyHandler.handleKeyDown);
-        window.addEventListener("keyup", KeyHandler.handleKeyUp);
+        globalThis.addEventListener("keydown", KeyHandler.handleKeyDown);
+        globalThis.addEventListener("keyup", KeyHandler.handleKeyUp);
 
-        window.requestAnimationFrame(this.gameloop.bind(this));
+        globalThis.requestAnimationFrame(this.gameloop.bind(this));
     }
 
     /**
@@ -40,7 +40,7 @@ export class Game {
         this.update();
         this.render();
 
-        window.requestAnimationFrame(this.gameloop.bind(this));
+        globalThis.requestAnimationFrame(this.gameloop.bind(this));
     }
 
     /**
@@ -59,8 +59,8 @@ export class Game {
      */
     private render(): void {
         let ctx: CanvasRenderingContext2D = this.ctx2d;
-        ctx.canvas.width = window.innerWidth;
-        ctx.canvas.height = window.innerHeight;
+        ctx.canvas.width = globalThis.innerWidth;
+        ctx.canvas.height = globalThis.innerHeight;
 
         // Options:
         ctx.imageSmoothingEnabled = false; // <-- disables anti aliasing, necessary for pixelart
@@ -90,7 +90,7 @@ export class Game {
 /**
  * Entry point for the application / game engine and composition root.
  */
-window.onload = () => {
+globalThis.onload = () => {
     new Game();
 }
 // ===========================================================================

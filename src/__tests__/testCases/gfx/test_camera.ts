@@ -13,15 +13,18 @@ export class Test_Camera {
         Test.assertEqual(camera.getY(), newY);
     }
 
-    // public Test_CameraTracksObject(): void {
-    //     let camera: Camera = new Camera();
-    //     let objToTrack: GameObject = new Camera();
-    //     objToTrack.setX(100);
-    //     objToTrack.setY(100);
-    //     camera.trackObject(objToTrack);
-    //     camera.update();
-    //     Test.assertEqual(camera.getX(), objToTrack.getX());
-    //     Test.assertEqual(camera.getY(), objToTrack.getY());
-    // }
+    public Test_CameraTracksObject(): void {
+        // set the windows inner width:
+        globalThis.innerWidth = 100;
+        globalThis.innerHeight = 100;
+        let camera: Camera = new Camera();
+        let objToTrack: GameObject = new Camera();
+        objToTrack.setX(100);
+        objToTrack.setY(100);
+        camera.trackObject(objToTrack);
+        camera.update();
+        Test.assertEqual(camera.getX(), objToTrack.getX() / 2);
+        Test.assertEqual(camera.getY(), objToTrack.getY() / 2);
+    }
 
 }
