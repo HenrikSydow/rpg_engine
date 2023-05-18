@@ -145,8 +145,8 @@ class CenterScreenBigMessage extends Message {
     constructor(text: string) {
         super(
             text,
-            window.innerWidth / 2,
-            window.innerHeight / 8,
+            globalThis.innerWidth / 2,
+            globalThis.innerHeight / 8,
             `bold 50px Arial`,
             2000,
             "center"

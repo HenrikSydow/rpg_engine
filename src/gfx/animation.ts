@@ -81,7 +81,7 @@ export class Animation {
      */
     public update(): void {
         let currentTime: number = Date.now();
-        if (currentTime - this.lastFrameTime > this.frameTime) {
+        if (currentTime - this.lastFrameTime >= this.frameTime) {
             this.currentFrame++;
             if (this.currentFrame == this.frames.length) {
                 this.playCount++;
@@ -144,7 +144,7 @@ export class Animation {
 
     /** Setter for scale. */
     public setScale(scale: number): void {
-        scale = scale;
+        this.scale = scale;
     }
 
     /** Setter for x offset. */
@@ -160,6 +160,11 @@ export class Animation {
     /** Getter for playcount property. */
     public getPlayCount(): number {
         return this.playCount;
+    }
+
+    /** Getter for the current frame. */
+    public getCurrentFrame(): HTMLImageElement {
+        return this.frames[this.currentFrame];
     }
 
 }
