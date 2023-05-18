@@ -13,9 +13,7 @@ class MockImage {
 export class Test_Animation {
 
     public Test_AnimationCyclesAllFrames(): void {
-        if (Image == null) {  // sets a mock image
-            var Image = MockImage as any;
-        }
+        var Image = MockImage as any;
         let frames: Array<HTMLImageElement> = [
             new Image(),
             new Image(),
@@ -30,9 +28,7 @@ export class Test_Animation {
     }
 
     public Test_FramesCycleAfterFrameTime(): void {
-        if (Image == null) {  // sets a mock image
-            var Image = MockImage as any;
-        }
+        var Image = MockImage as any;
         let frames: Array<HTMLImageElement> = [
             new Image(),
             new Image(),
@@ -51,9 +47,7 @@ export class Test_Animation {
     }
 
     public Test_AnimationTracksPlayCount(): void {
-        if (Image == null) {  // sets a mock image
-            var Image = MockImage as any;
-        }
+        var Image = MockImage as any;
         let animations: Array<Animation> = [
             new Animation([new Image()]),
             new Animation([new Image(), new Image()]),
