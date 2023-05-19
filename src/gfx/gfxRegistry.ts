@@ -14,6 +14,12 @@ export abstract class GfxRegistry {
     // Define graphics resources to be loaded HERE! This example shows how to load
     // three png frames from a folder called "a_folder".
     // public static readonly EXAMPLE_ANIMATION_FRAMES: Array<HTMLImageElement> = GfxRegistry.loadAnimationArray("a_folder", FileType.PNG, 3);
+    public static readonly PLAYER_IDLE_SOUTH_FRAMES:    Array<HTMLImageElement> = GfxRegistry.loadAnimationArray("./res/player/idle/south", FileType.PNG, 6);
+    public static readonly PLAYER_IDLE_NORTH_FRAMES:    Array<HTMLImageElement> = GfxRegistry.loadAnimationArray("./res/player/idle/north", FileType.PNG, 6);
+    public static readonly PLAYER_IDLE_EAST_FRAMES:     Array<HTMLImageElement> = GfxRegistry.loadAnimationArray("./res/player/idle/east",  FileType.PNG, 6);
+    public static readonly PLAYER_WALK_SOUTH_FRAMES:    Array<HTMLImageElement> = GfxRegistry.loadAnimationArray("./res/player/walk/south", FileType.PNG, 6);
+    public static readonly PLAYER_WALK_NORTH_FRAMES:    Array<HTMLImageElement> = GfxRegistry.loadAnimationArray("./res/player/walk/north", FileType.PNG, 6);
+    public static readonly PLAYER_WALK_EAST_FRAMES:     Array<HTMLImageElement> = GfxRegistry.loadAnimationArray("./res/player/walk/east",  FileType.PNG, 6);
 
     /**
      * Loads an array of images / frames, which can be used to construct animations.

@@ -4,6 +4,8 @@ import { GameTime } from "./gameTime.js";
 import { KeyHandler } from "./keyHandler.js";
 import { MouseHandler } from "./mouseHandler.js";
 import { HudMessageDisplay } from "./hud/hudMessageDisplay.js";
+import { GameObjectFactory } from "./gameObjects/gameObjectFactory.js";
+import { GameObjectConstants } from "./gameObjects/gameObjectConstants.js";
 
 /**
  * Main class of the engine.
@@ -29,6 +31,8 @@ export class Game {
         // Bind keyhandler:
         globalThis.addEventListener("keydown", KeyHandler.handleKeyDown);
         globalThis.addEventListener("keyup", KeyHandler.handleKeyUp);
+
+        GameObjectHandler.add(GameObjectFactory.buildGameObject(GameObjectConstants.GameObjectName.Player, 0, 0));
 
         globalThis.requestAnimationFrame(this.gameloop.bind(this));
     }
