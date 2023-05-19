@@ -34,6 +34,15 @@ export class AnimationHandler {
     }
 
     /**
+     * Adds multiple animations to this handler using the
+     * {@link AnimationHandler.addAnimation} method.
+     * @param animations A map containing key, value pairs of animations.
+     */
+    public addAnimations(animations: Map<String, Animation>): void {
+        animations.forEach( (value, key ) => this.addAnimation(key, value) );
+    }
+
+    /**
      * Removes an animation from this handler.
      * @param name The key of an animation handled by this handler.
      */
