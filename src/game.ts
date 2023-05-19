@@ -35,6 +35,9 @@ export class Game {
         globalThis.addEventListener("keydown", KeyHandler.handleKeyDown);
         globalThis.addEventListener("keyup", KeyHandler.handleKeyUp);
 
+        GameObjectHandler.add(GameObjectFactory.buildGameObject(GameObjectConstants.GameObjectName.BigTree, -300, -200));
+        GameObjectHandler.add(GameObjectFactory.buildGameObject(GameObjectConstants.GameObjectName.SmallTree, 170, -40));
+        GameObjectHandler.add(GameObjectFactory.buildGameObject(GameObjectConstants.GameObjectName.TreeStump, -70, 120));
 
         let player: Player = GameObjectFactory.buildGameObject(GameObjectConstants.GameObjectName.Player, 0, 0) as Player;
         GameObjectHandler.add(player);
@@ -79,7 +82,7 @@ export class Game {
         // Background:
         ctx.fillStyle = "#111111";
         ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-        
+
         // HUD:
         HudMessageDisplay.render(ctx);
         FpsCounter.render(ctx);

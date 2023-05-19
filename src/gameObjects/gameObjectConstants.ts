@@ -12,7 +12,10 @@ export namespace GameObjectConstants {
         Example GameObject name / id:
         ExampleObject = "testObject",
         */
-        Player = "player"
+        Player      = "player",
+        BigTree     = "bigTree",
+        SmallTree   = "smallTree",
+        TreeStump   = "treeStump",
     }
 
     export enum FaceDirection {

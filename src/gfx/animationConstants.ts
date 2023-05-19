@@ -20,6 +20,10 @@ export namespace AnimationConstants {
         PLAYER_WALK_SOUTH       = "player_walk_south",
         PLAYER_WALK_NORTH       = "player_walk_north",
         PLAYER_WALK_EAST        = "player_walk_east",
+
+        VEGETATION_BIG_TREE     = "vegetation_big_tree",
+        VEGETATION_SMALL_TREE   = "vegetation_small_tree",
+        VEGETATION_TREE_STUMP   = "vegetation_tree_stump",
     }
 
 }

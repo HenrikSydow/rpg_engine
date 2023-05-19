@@ -5,6 +5,9 @@ import { HitboxConstants } from "../physics/hitboxes/hitboxConstants.js";
 import { HitboxFactory } from "../physics/hitboxes/hitboxFactory.js";
 import { HitboxHandler } from "../physics/hitboxes/hitboxHandler.js";
 import { Player } from "./customObjects/characters/player.js";
+import { BigTree } from "./customObjects/scenery/vegetation/trees/bigTree.js";
+import { SmallTree } from "./customObjects/scenery/vegetation/trees/smallTree.js";
+import { TreeStump } from "./customObjects/scenery/vegetation/trees/treeStump.js";
 import { GameObject } from "./gameObject.js";
 import { GameObjectConstants } from "./gameObjectConstants.js";
 
@@ -61,6 +64,27 @@ export abstract class GameObjectFactory {
                     ],
                 ]));
                 gameObject = new Player(x, y, animationHandler, hitboxHandler);
+                break;
+            case GameObjectConstants.GameObjectName.BigTree:
+                animationHandler.addAnimation(
+                    AnimationConstants.AnimationNames.VEGETATION_BIG_TREE,
+                    AnimationFactory.buildAnimation(AnimationConstants.AnimationNames.VEGETATION_BIG_TREE)
+                );
+                gameObject = new BigTree(x, y, animationHandler, hitboxHandler);
+                break;
+            case GameObjectConstants.GameObjectName.SmallTree:
+                animationHandler.addAnimation(
+                    AnimationConstants.AnimationNames.VEGETATION_SMALL_TREE,
+                    AnimationFactory.buildAnimation(AnimationConstants.AnimationNames.VEGETATION_SMALL_TREE)
+                );
+                gameObject = new SmallTree(x, y, animationHandler, hitboxHandler);
+                break;
+            case GameObjectConstants.GameObjectName.TreeStump:
+                animationHandler.addAnimation(
+                    AnimationConstants.AnimationNames.VEGETATION_TREE_STUMP,
+                    AnimationFactory.buildAnimation(AnimationConstants.AnimationNames.VEGETATION_TREE_STUMP)
+                );
+                gameObject = new TreeStump(x, y, animationHandler, hitboxHandler);
                 break;
         }
 
