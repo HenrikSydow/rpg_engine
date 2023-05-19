@@ -12,6 +12,21 @@ export namespace GameObjectConstants {
         Example GameObject name / id:
         ExampleObject = "testObject",
         */
+        Player = "player"
+    }
+
+    export enum FaceDirection {
+        North   = "north",
+        East    = "east",
+        South   = "south",
+        West    = "west"
+    }
+
+    export enum ActionState {
+        Idle    = "idle",
+        Walk    = "walk",
+        Attack  = "attack",
+        Dead    = "dead"
     }
 
 }

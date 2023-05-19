@@ -1,5 +1,6 @@
 import { Animation } from "./animation.js";
 import { AnimationConstants } from "./animationConstants.js";
+import { GfxRegistry } from "./gfxRegistry.js";
 
 /**
  * A factory class for all {@link Animation} instances.
@@ -31,6 +32,30 @@ export abstract class AnimationFactory {
                 // do not forget to break after each case!
                 break;
             */
+            case AnimationConstants.AnimationNames.PLAYER_IDLE_SOUTH:
+                animation = new Animation(GfxRegistry.PLAYER_IDLE_SOUTH_FRAMES);
+                animation.setScale(5);
+                break;
+            case AnimationConstants.AnimationNames.PLAYER_IDLE_NORTH:
+                animation = new Animation(GfxRegistry.PLAYER_IDLE_NORTH_FRAMES);
+                animation.setScale(5);
+                break;
+            case AnimationConstants.AnimationNames.PLAYER_IDLE_EAST:
+                animation = new Animation(GfxRegistry.PLAYER_IDLE_EAST_FRAMES);
+                animation.setScale(5);
+                break;
+            case AnimationConstants.AnimationNames.PLAYER_WALK_SOUTH:
+                animation = new Animation(GfxRegistry.PLAYER_WALK_SOUTH_FRAMES);
+                animation.setScale(5);
+                break;
+            case AnimationConstants.AnimationNames.PLAYER_WALK_NORTH:
+                animation = new Animation(GfxRegistry.PLAYER_WALK_NORTH_FRAMES);
+                animation.setScale(5);
+                break;
+            case AnimationConstants.AnimationNames.PLAYER_WALK_EAST:
+                animation = new Animation(GfxRegistry.PLAYER_WALK_EAST_FRAMES);
+                animation.setScale(5);
+                break;
         }
 
         return animation;
