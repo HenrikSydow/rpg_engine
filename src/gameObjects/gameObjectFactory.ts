@@ -34,30 +34,32 @@ export abstract class GameObjectFactory {
                 break;
             */
             case GameObjectConstants.GameObjectName.Player:
-                animationHandler.addAnimation(
-                    AnimationConstants.AnimationNames.PLAYER_IDLE_SOUTH,
-                    AnimationFactory.buildAnimation(AnimationConstants.AnimationNames.PLAYER_IDLE_SOUTH)
-                );
-                animationHandler.addAnimation(
-                    AnimationConstants.AnimationNames.PLAYER_IDLE_NORTH,
-                    AnimationFactory.buildAnimation(AnimationConstants.AnimationNames.PLAYER_IDLE_NORTH)
-                );
-                animationHandler.addAnimation(
-                    AnimationConstants.AnimationNames.PLAYER_IDLE_EAST,
-                    AnimationFactory.buildAnimation(AnimationConstants.AnimationNames.PLAYER_IDLE_EAST)
-                );
-                animationHandler.addAnimation(
-                    AnimationConstants.AnimationNames.PLAYER_WALK_SOUTH,
-                    AnimationFactory.buildAnimation(AnimationConstants.AnimationNames.PLAYER_WALK_SOUTH)
-                );
-                animationHandler.addAnimation(
-                    AnimationConstants.AnimationNames.PLAYER_WALK_NORTH,
-                    AnimationFactory.buildAnimation(AnimationConstants.AnimationNames.PLAYER_WALK_NORTH)
-                );
-                animationHandler.addAnimation(
-                    AnimationConstants.AnimationNames.PLAYER_WALK_EAST,
-                    AnimationFactory.buildAnimation(AnimationConstants.AnimationNames.PLAYER_WALK_EAST)
-                );
+                animationHandler.addAnimations(new Map([
+                    [
+                        AnimationConstants.AnimationNames.PLAYER_IDLE_SOUTH,
+                        AnimationFactory.buildAnimation(AnimationConstants.AnimationNames.PLAYER_IDLE_SOUTH)
+                    ],
+                    [
+                        AnimationConstants.AnimationNames.PLAYER_IDLE_NORTH,
+                        AnimationFactory.buildAnimation(AnimationConstants.AnimationNames.PLAYER_IDLE_NORTH)
+                    ],
+                    [
+                        AnimationConstants.AnimationNames.PLAYER_IDLE_EAST,
+                        AnimationFactory.buildAnimation(AnimationConstants.AnimationNames.PLAYER_IDLE_EAST)
+                    ],
+                    [
+                        AnimationConstants.AnimationNames.PLAYER_WALK_SOUTH,
+                        AnimationFactory.buildAnimation(AnimationConstants.AnimationNames.PLAYER_WALK_SOUTH)
+                    ],
+                    [
+                        AnimationConstants.AnimationNames.PLAYER_WALK_NORTH,
+                        AnimationFactory.buildAnimation(AnimationConstants.AnimationNames.PLAYER_WALK_NORTH)
+                    ],
+                    [
+                        AnimationConstants.AnimationNames.PLAYER_WALK_EAST,
+                        AnimationFactory.buildAnimation(AnimationConstants.AnimationNames.PLAYER_WALK_EAST)
+                    ],
+                ]));
                 gameObject = new Player(x, y, animationHandler, hitboxHandler);
                 break;
         }
