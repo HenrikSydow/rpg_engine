@@ -6,6 +6,8 @@ import { MouseHandler } from "./mouseHandler.js";
 import { HudMessageDisplay } from "./hud/hudMessageDisplay.js";
 import { GameObjectFactory } from "./gameObjects/gameObjectFactory.js";
 import { GameObjectConstants } from "./gameObjects/gameObjectConstants.js";
+import { Camera } from "./gfx/camera.js";
+import { Player } from "./gameObjects/customObjects/characters/player.js";
 
 /**
  * Main class of the engine.
@@ -14,6 +16,7 @@ import { GameObjectConstants } from "./gameObjects/gameObjectConstants.js";
 export class Game {
     private readonly canvas: HTMLCanvasElement = document.getElementById("gameCanvas") as HTMLCanvasElement;
     private readonly ctx2d: CanvasRenderingContext2D = this.canvas.getContext("2d") as CanvasRenderingContext2D;
+    private readonly mainCamera: Camera = new Camera();
 
     /**
      * The constructor for the Game class.
@@ -32,7 +35,10 @@ export class Game {
         globalThis.addEventListener("keydown", KeyHandler.handleKeyDown);
         globalThis.addEventListener("keyup", KeyHandler.handleKeyUp);
 
-        GameObjectHandler.add(GameObjectFactory.buildGameObject(GameObjectConstants.GameObjectName.Player, 0, 0));
+
+        let player: Player = GameObjectFactory.buildGameObject(GameObjectConstants.GameObjectName.Player, 0, 0) as Player;
+        GameObjectHandler.add(player);
+        this.mainCamera.trackObject(player);
 
         globalThis.requestAnimationFrame(this.gameloop.bind(this));
     }
@@ -54,6 +60,7 @@ export class Game {
     private update(): void {
         GameTime.update();
         GameObjectHandler.update();
+        this.mainCamera.update();
         HudMessageDisplay.update();
     }
 
@@ -72,13 +79,16 @@ export class Game {
         // Background:
         ctx.fillStyle = "#111111";
         ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-
-        // Foreground:
-        GameObjectHandler.render(ctx);
-
+        
         // HUD:
         HudMessageDisplay.render(ctx);
         FpsCounter.render(ctx);
+
+        // Camera:
+        this.mainCamera.render(ctx);
+
+        // Foreground:
+        GameObjectHandler.render(ctx);
 
         // Cleanup:
         ctx.setTransform(1, 0, 0, 1, 0, 0);

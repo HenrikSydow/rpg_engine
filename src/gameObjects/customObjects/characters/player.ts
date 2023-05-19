@@ -1,5 +1,8 @@
+import { GameTime } from "../../../gameTime.js";
 import { AnimationConstants } from "../../../gfx/animationConstants.js";
+import { AnimationHandler } from "../../../gfx/animationHandler.js";
 import { KeyHandler } from "../../../keyHandler.js";
+import { HitboxHandler } from "../../../physics/hitboxes/hitboxHandler.js";
 import { GameObjectConstants } from "../../gameObjectConstants.js";
 import { PhysicalGameObject } from "../../physicalGameObject.js";
 
@@ -7,6 +10,11 @@ export class Player extends PhysicalGameObject {
 
     private faceDirection: GameObjectConstants.FaceDirection = GameObjectConstants.FaceDirection.South;
     private actionState: GameObjectConstants.ActionState = GameObjectConstants.ActionState.Idle;
+
+    public constructor(x: number, y: number, animationHandler: AnimationHandler, hitboxHandler: HitboxHandler) {
+        super(x, y, animationHandler, hitboxHandler);
+        this.velX = this.velY = 2.5;
+    }
 
     public override update(): void {
         if (KeyHandler.isPressed("w")) {
@@ -64,17 +72,21 @@ export class Player extends PhysicalGameObject {
         switch (this.faceDirection) {
             case GameObjectConstants.FaceDirection.North:
                 this.animationHandler.setActiveAnimation(AnimationConstants.AnimationNames.PLAYER_WALK_NORTH);
+                this.y -= GameTime.normalize(this.velY);
                 break;
             case GameObjectConstants.FaceDirection.West:
                 this.animationHandler.setActiveAnimation(AnimationConstants.AnimationNames.PLAYER_WALK_EAST);
                 this.animationHandler.getActiveAnimation().setFlipOnY(true);
+                this.x -= GameTime.normalize(this.velX);
                 break;
             case GameObjectConstants.FaceDirection.East:
                 this.animationHandler.setActiveAnimation(AnimationConstants.AnimationNames.PLAYER_WALK_EAST);
                 this.animationHandler.getActiveAnimation().setFlipOnY(false);
+                this.x += GameTime.normalize(this.velX);
                 break;
             case GameObjectConstants.FaceDirection.South:
                 this.animationHandler.setActiveAnimation(AnimationConstants.AnimationNames.PLAYER_WALK_SOUTH);
+                this.y += GameTime.normalize(this.velY);
                 break;
         }
     }
