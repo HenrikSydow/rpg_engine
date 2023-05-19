@@ -1,6 +1,15 @@
 import { GameObject } from "../../../gameObjects/gameObject.js";
-import { Camera } from "../../../gfx/camera.js";
+import { Camera, ITrackable } from "../../../gfx/camera.js";
 import { Test } from "../../testing.js";
+
+class Trackable implements ITrackable {
+    public x: number = 100;
+    public y: number = 100;
+
+    getCenter(): number[] {
+        return [this.x, this.y];
+    }
+}
 
 export class Test_Camera {
 
@@ -15,16 +24,14 @@ export class Test_Camera {
 
     public Test_CameraTracksObject(): void {
         // set the windows inner width:
-        globalThis.innerWidth = 100;
-        globalThis.innerHeight = 100;
+        globalThis.innerWidth = 1920;
+        globalThis.innerHeight = 1080;
         let camera: Camera = new Camera();
-        let objToTrack: GameObject = new Camera();
-        objToTrack.setX(100);
-        objToTrack.setY(100);
+        let objToTrack: Trackable = new Trackable();
         camera.trackObject(objToTrack);
         camera.update();
-        Test.assertEqual(camera.getX(), objToTrack.getX() / 2);
-        Test.assertEqual(camera.getY(), objToTrack.getY() / 2);
+        Test.assertEqual(camera.getX(), -(globalThis.innerWidth / 2 - objToTrack.x));
+        Test.assertEqual(camera.getY(), -(globalThis.innerHeight / 2 - objToTrack.y));
     }
 
 }
