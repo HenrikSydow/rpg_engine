@@ -56,6 +56,19 @@ export abstract class AnimationFactory {
                 animation = new Animation(GfxRegistry.PLAYER_WALK_EAST_FRAMES);
                 animation.setScale(5);
                 break;
+                
+            case AnimationConstants.AnimationNames.VEGETATION_BIG_TREE:
+                animation = new Animation([GfxRegistry.VEGETATION_BIG_TREE]);
+                animation.setScale(5);
+                break;
+            case AnimationConstants.AnimationNames.VEGETATION_SMALL_TREE:
+                animation = new Animation([GfxRegistry.VEGETATION_SMALL_TREE]);
+                animation.setScale(5);
+                break;
+            case AnimationConstants.AnimationNames.VEGETATION_TREE_STUMP:
+                animation = new Animation([GfxRegistry.VEGETATION_TREE_STUMP]);
+                animation.setScale(5);
+                break;
         }
 
         return animation;

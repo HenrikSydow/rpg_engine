@@ -14,12 +14,18 @@ export abstract class GfxRegistry {
     // Define graphics resources to be loaded HERE! This example shows how to load
     // three png frames from a folder called "a_folder".
     // public static readonly EXAMPLE_ANIMATION_FRAMES: Array<HTMLImageElement> = GfxRegistry.loadAnimationArray("a_folder", FileType.PNG, 3);
+
+    // PLAYER:
     public static readonly PLAYER_IDLE_SOUTH_FRAMES:    Array<HTMLImageElement> = GfxRegistry.loadAnimationArray("./res/player/idle/south", FileType.PNG, 6);
     public static readonly PLAYER_IDLE_NORTH_FRAMES:    Array<HTMLImageElement> = GfxRegistry.loadAnimationArray("./res/player/idle/north", FileType.PNG, 6);
     public static readonly PLAYER_IDLE_EAST_FRAMES:     Array<HTMLImageElement> = GfxRegistry.loadAnimationArray("./res/player/idle/east",  FileType.PNG, 6);
     public static readonly PLAYER_WALK_SOUTH_FRAMES:    Array<HTMLImageElement> = GfxRegistry.loadAnimationArray("./res/player/walk/south", FileType.PNG, 6);
     public static readonly PLAYER_WALK_NORTH_FRAMES:    Array<HTMLImageElement> = GfxRegistry.loadAnimationArray("./res/player/walk/north", FileType.PNG, 6);
     public static readonly PLAYER_WALK_EAST_FRAMES:     Array<HTMLImageElement> = GfxRegistry.loadAnimationArray("./res/player/walk/east",  FileType.PNG, 6);
+
+    public static readonly VEGETATION_BIG_TREE:         HTMLImageElement = GfxRegistry.loadSingleImage("./res/scenery/vegetation/trees/bigTree.png");
+    public static readonly VEGETATION_TREE_STUMP:       HTMLImageElement = GfxRegistry.loadSingleImage("./res/scenery/vegetation/trees/treeStump.png");
+    public static readonly VEGETATION_SMALL_TREE:       HTMLImageElement = GfxRegistry.loadSingleImage("./res/scenery/vegetation/trees/smallTree.png");
 
     /**
      * Loads an array of images / frames, which can be used to construct animations.
@@ -33,11 +39,17 @@ export abstract class GfxRegistry {
     private static loadAnimationArray(folder: string, type: string, count: number): Array<HTMLImageElement> {
         let gfxResource: Array<HTMLImageElement> = [];
         for (let i: number = 0; i < count; i++) {
-            let tempResource: HTMLImageElement = new Image();
-            tempResource.src = folder + "/" + i.toString() + type;
-            gfxResource.push(tempResource);
+            gfxResource.push(
+                this.loadSingleImage(folder + "/" + i.toString() + type)
+            );
         }
         return gfxResource;
+    }
+
+    private static loadSingleImage(path: string): HTMLImageElement {
+        let tempResource: HTMLImageElement = new Image();
+        tempResource.src = path;
+        return tempResource;
     }
 
 }
