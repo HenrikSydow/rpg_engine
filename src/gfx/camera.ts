@@ -2,12 +2,19 @@ import { GameObject } from "../gameObjects/gameObject.js";
 import { GameTime } from "../gameTime.js";
 
 /**
+ * An interface for trackable objects.
+ */
+export interface ITrackable {
+    getCenter(): Array<number>;
+}
+
+/**
  * A camera which can be moved across the screen, track GameObjects
  * and zoom in and out.
  */
 export class Camera extends GameObject {
 
-    private trackedObject: GameObject;
+    private trackedObject: ITrackable;
     private zoom: number = 1;
 
     constructor() {
@@ -35,19 +42,19 @@ export class Camera extends GameObject {
     }
 
     /**
-     * Pass a GameObject to be tracked by the camera.
-     * @param gameObject An object to be tracked.
+     * Pass an ITrackable to be tracked by the camera.
+     * @param trackable An object to be tracked.
      */
-    public trackObject(gameObject: GameObject): void {
-        this.trackedObject = gameObject;
+    public trackObject(trackable: ITrackable): void {
+        this.trackedObject = trackable;
     }
 
     /**
      * Stops tracking the current object and returns it.
      * @returns The previously tracked object.
      */
-    public releaseObject(): GameObject {
-        let tempTracked: GameObject = this.trackedObject;
+    public releaseTrackable(): ITrackable {
+        let tempTracked: ITrackable = this.trackedObject;
         this.trackedObject = null;
         return tempTracked;
     }
@@ -92,9 +99,10 @@ export class Camera extends GameObject {
         if (this.trackedObject != null) {
             let offsetX: number = globalThis.innerWidth / 2;
             let offsetY: number = globalThis.innerHeight / 2;
+            let trackedLocation: Array<number> = this.trackedObject.getCenter();
             this.setLocation(
-                this.trackedObject.getX() - offsetX,
-                this.trackedObject.getY() - offsetY
+                trackedLocation[0] - offsetX,
+                trackedLocation[1] - offsetY
             );
         }
     }
