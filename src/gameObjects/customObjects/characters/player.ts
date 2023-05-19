@@ -1,12 +1,13 @@
 import { GameTime } from "../../../gameTime.js";
 import { AnimationConstants } from "../../../gfx/animationConstants.js";
 import { AnimationHandler } from "../../../gfx/animationHandler.js";
+import { ITrackable } from "../../../gfx/camera.js";
 import { KeyHandler } from "../../../keyHandler.js";
 import { HitboxHandler } from "../../../physics/hitboxes/hitboxHandler.js";
 import { GameObjectConstants } from "../../gameObjectConstants.js";
 import { PhysicalGameObject } from "../../physicalGameObject.js";
 
-export class Player extends PhysicalGameObject {
+export class Player extends PhysicalGameObject implements ITrackable {
 
     private faceDirection: GameObjectConstants.FaceDirection = GameObjectConstants.FaceDirection.South;
     private actionState: GameObjectConstants.ActionState = GameObjectConstants.ActionState.Idle;
@@ -89,6 +90,10 @@ export class Player extends PhysicalGameObject {
                 this.y += GameTime.normalize(this.velY);
                 break;
         }
+    }
+    
+    getCenter(): number[] {
+        return [this.x + 150, this.y + 150];
     }
 
 }
