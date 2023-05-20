@@ -4,7 +4,10 @@ import { AnimationHandler } from "../../../gfx/animationHandler.js";
 import { ITrackable } from "../../../gfx/camera.js";
 import { KeyHandler } from "../../../keyHandler.js";
 import { HitboxHandler } from "../../../physics/hitboxes/hitboxHandler.js";
+import { HitboxConstants } from "../../../physics/hitboxes/hitboxConstants.js";
+import { Rectangle } from "../../../physics/shapes/rectangle.js";
 import { GameObjectConstants } from "../../gameObjectConstants.js";
+import { GameObjectHandler } from "../../gameObjectHandler.js";
 import { PhysicalGameObject } from "../../physicalGameObject.js";
 
 export class Player extends PhysicalGameObject implements ITrackable {
@@ -48,6 +51,18 @@ export class Player extends PhysicalGameObject implements ITrackable {
 
     public override render(ctx: CanvasRenderingContext2D): void {
         this.animationHandler.render(ctx);
+        this.hitboxHandler.getHitboxes().forEach( hBox => {
+            hBox.getShapes().forEach(shape => {
+                let rect: Rectangle = shape as Rectangle;
+                ctx.strokeStyle = "rgb(255, 0, 0)";
+                ctx.strokeRect(
+                    hBox.getX() + rect.getLocalX(),
+                    hBox.getY() + rect.getLocalY(),
+                    rect.getWidth(),
+                    rect.getHeight()
+                );
+            });
+        });
     }
 
     private idle(): void {
@@ -70,29 +85,56 @@ export class Player extends PhysicalGameObject implements ITrackable {
     }
 
     private walk(): void {
+        let newX: number = this.x;
+        let newY: number = this.y;
+
         switch (this.faceDirection) {
             case GameObjectConstants.FaceDirection.North:
                 this.animationHandler.setActiveAnimation(AnimationConstants.AnimationNames.PLAYER_WALK_NORTH);
-                this.y -= GameTime.normalize(this.velY);
+                newY -= GameTime.normalize(this.velY);
                 break;
             case GameObjectConstants.FaceDirection.West:
                 this.animationHandler.setActiveAnimation(AnimationConstants.AnimationNames.PLAYER_WALK_EAST);
                 this.animationHandler.getActiveAnimation().setFlipOnY(true);
-                this.x -= GameTime.normalize(this.velX);
+                newX -= GameTime.normalize(this.velX);
                 break;
             case GameObjectConstants.FaceDirection.East:
                 this.animationHandler.setActiveAnimation(AnimationConstants.AnimationNames.PLAYER_WALK_EAST);
                 this.animationHandler.getActiveAnimation().setFlipOnY(false);
-                this.x += GameTime.normalize(this.velX);
+                newX += GameTime.normalize(this.velX);
                 break;
             case GameObjectConstants.FaceDirection.South:
                 this.animationHandler.setActiveAnimation(AnimationConstants.AnimationNames.PLAYER_WALK_SOUTH);
-                this.y += GameTime.normalize(this.velY);
+                newY += GameTime.normalize(this.velY);
                 break;
         }
+        this.hitboxHandler.shift(newX - this.x, newY - this.y);
+
+        if (!this.intersectsAnotherObject()) {
+            this.x = newX;
+            this.y = newY;
+        } else {
+            this.hitboxHandler.shift(this.x - newX, this.y - newY);
+        }
+    }
+
+    private intersectsAnotherObject(): boolean {
+        let intersects: boolean = false;
+        GameObjectHandler.getAllObjects().forEach(obj => {
+            if (!(obj instanceof Player) && obj instanceof PhysicalGameObject) {
+                let physicalObj: PhysicalGameObject = obj as PhysicalGameObject;
+                let objHBox = physicalObj.getHitboxHandler().getHitbox(HitboxConstants.HitboxType.GroundHitbox);
+                let myHBox = this.hitboxHandler.getHitbox(HitboxConstants.HitboxType.GroundHitbox);
+                if (objHBox != null && myHBox.intersects(objHBox)) {
+                    intersects = true;
+                    return;
+                }
+            }
+        });
+        return intersects;
     }
     
-    getCenter(): number[] {
+    public getCenter(): number[] {
         return [this.x + 150, this.y + 150];
     }
 

@@ -17,4 +17,8 @@ export abstract class PhysicalGameObject extends GameObject {
         this.animationHandler.update(this.x, this.y);
     }
 
+    public getHitboxHandler(): HitboxHandler {
+        return this.hitboxHandler;
+    }
+
 }

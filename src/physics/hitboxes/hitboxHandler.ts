@@ -6,7 +6,7 @@ import { Hitbox } from "./hitbox.js";
 export class HitboxHandler {
 
     /** All added hitboxes. */
-    protected hitboxes: Map<String, Hitbox>;
+    protected hitboxes: Map<String, Hitbox> = new Map();
     /** Enables or disables this handler. */
     protected enabled: boolean;
 

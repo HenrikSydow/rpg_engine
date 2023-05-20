@@ -64,29 +64,49 @@ export abstract class GameObjectFactory {
                         AnimationFactory.buildAnimation(AnimationConstants.AnimationNames.PLAYER_WALK_EAST)
                     ],
                 ]));
+                hitboxHandler.addHitbox(
+                    HitboxConstants.HitboxType.GroundHitbox,
+                    HitboxFactory.buildHitbox(HitboxConstants.HitboxName.PlayerGround, x, y)
+                );
                 gameObject = new Player(x, y, animationHandler, hitboxHandler);
                 break;
+
             case GameObjectConstants.GameObjectName.BigTree:
                 animationHandler.addAnimation(
                     AnimationConstants.AnimationNames.VEGETATION_BIG_TREE,
                     AnimationFactory.buildAnimation(AnimationConstants.AnimationNames.VEGETATION_BIG_TREE)
                 );
+                hitboxHandler.addHitbox(
+                    HitboxConstants.HitboxType.GroundHitbox,
+                    HitboxFactory.buildHitbox(HitboxConstants.HitboxName.BigTreeGround, x, y)
+                );
                 gameObject = new BigTree(x, y, animationHandler, hitboxHandler);
                 break;
+
             case GameObjectConstants.GameObjectName.SmallTree:
                 animationHandler.addAnimation(
                     AnimationConstants.AnimationNames.VEGETATION_SMALL_TREE,
                     AnimationFactory.buildAnimation(AnimationConstants.AnimationNames.VEGETATION_SMALL_TREE)
                 );
+                hitboxHandler.addHitbox(
+                    HitboxConstants.HitboxType.GroundHitbox,
+                    HitboxFactory.buildHitbox(HitboxConstants.HitboxName.SmallTreeGround, x, y)
+                );
                 gameObject = new SmallTree(x, y, animationHandler, hitboxHandler);
                 break;
+
             case GameObjectConstants.GameObjectName.TreeStump:
                 animationHandler.addAnimation(
                     AnimationConstants.AnimationNames.VEGETATION_TREE_STUMP,
                     AnimationFactory.buildAnimation(AnimationConstants.AnimationNames.VEGETATION_TREE_STUMP)
                 );
+                hitboxHandler.addHitbox(
+                    HitboxConstants.HitboxType.GroundHitbox,
+                    HitboxFactory.buildHitbox(HitboxConstants.HitboxName.TreeStumpGround, x, y)
+                );
                 gameObject = new TreeStump(x, y, animationHandler, hitboxHandler);
                 break;
+
             case GameObjectConstants.GameObjectName.Bush:
                 animationHandler.addAnimation(
                     AnimationConstants.AnimationNames.VEGETATION_BUSH,

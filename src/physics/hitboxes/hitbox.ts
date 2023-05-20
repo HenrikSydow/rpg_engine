@@ -84,11 +84,19 @@ export class Hitbox {
 
         let intersects: boolean = false;
         hitbox.getShapes().forEach((shape: ShapeBase) => {
+            if (intersects) {
+                return;
+            }
+            
             let globalCorShape: [number, number] = [
                 hitbox.getX() + shape.getLocalX(),
                 hitbox.getY() + shape.getLocalY()
             ];
             this.getShapes().forEach((thisShape: ShapeBase) => {
+                if (intersects) {
+                    return;
+                }
+
                 let globalCorThisShape: [number, number] = [
                     this.getX() + thisShape.getLocalX(),
                     this.getY() + thisShape.getLocalY()

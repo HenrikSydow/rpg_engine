@@ -1,4 +1,9 @@
+import { Hitbox } from "../physics/hitboxes/hitbox.js";
+import { HitboxConstants } from "../physics/hitboxes/hitboxConstants.js";
+import { Circle } from "../physics/shapes/circle.js";
+import { Rectangle } from "../physics/shapes/rectangle.js";
 import { GameObject } from "./gameObject.js";
+import { PhysicalGameObject } from "./physicalGameObject.js";
 
 /**
  * The GameObjectHandler handels the update and render
@@ -104,9 +109,41 @@ export abstract class GameObjectHandler {
      * @param ctx The rendering context of the game.
      */
     public static render(ctx: CanvasRenderingContext2D): void {
+        GameObjectHandler.GAME_OBJECTS.sort(this.compareByHitbox);
         GameObjectHandler.GAME_OBJECTS.forEach(
             object => object.render(ctx)
         );
+    }
+
+    private static compareByHitbox(objectOne: GameObject, objectTwo: GameObject): number {
+        if (!(objectOne instanceof PhysicalGameObject)) return -1;
+        if (!(objectTwo instanceof PhysicalGameObject)) return 1;
+        let firstHBox: Hitbox = objectOne.getHitboxHandler().getHitbox(HitboxConstants.HitboxType.GroundHitbox);
+        let secondHBox: Hitbox = objectTwo.getHitboxHandler().getHitbox(HitboxConstants.HitboxType.GroundHitbox);
+        if (firstHBox == null) return -1;
+        if (secondHBox == null) return 1;
+        let firstY: number = GameObjectHandler.getHighestShapeY(firstHBox);
+        let secondY: number = GameObjectHandler.getHighestShapeY(secondHBox);
+        if (firstY < secondY) return -1;
+        if (firstY > secondY) return 1;
+        return 0;
+    }
+
+    private static getHighestShapeY(hitbox: Hitbox): number {
+        let highestY: number = null;
+        hitbox.getShapes().forEach(shape => {
+            let shapesY: number = hitbox.getY() + shape.getLocalY();
+            if (shape instanceof Rectangle) {
+                shapesY += shape.getHeight();
+            } else if (shape instanceof Circle) {
+                shapesY += (shape as Circle).getRadius();
+            }
+
+            if (highestY == null || shapesY > highestY) {
+                highestY = shapesY;
+            }
+        });
+        return highestY;
     }
 
     /**

@@ -12,6 +12,14 @@ export namespace HitboxConstants {
         Add hitbox identifiers like this:
         ExampleHitboxId = "ChooseWhateverYouWant",
         */
+        PlayerGround        = "player_ground",
+        BigTreeGround       = "tree_ground",
+        SmallTreeGround     = "small_tree_ground",
+        TreeStumpGround     = "tree_stump",
+    }
+
+    export enum HitboxType {
+        GroundHitbox        = "ground_hitbox",
     }
 
 }

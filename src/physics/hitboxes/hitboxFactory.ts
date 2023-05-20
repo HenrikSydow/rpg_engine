@@ -1,4 +1,4 @@
-import { Circle, Rectangle } from "../index.js";
+import { Rectangle } from "../shapes/rectangle.js";
 import { ShapeBase } from "../shapes/shapeBase.js";
 import { Hitbox } from "./hitbox.js";
 import { HitboxConstants } from "./hitboxConstants.js";
@@ -31,6 +31,22 @@ export abstract class HitboxFactory {
                 shapes.push(new Rectangle(1, 1, 1000, 10));
                 break;
             */
+            case HitboxConstants.HitboxName.PlayerGround:
+                shapes.push(new Rectangle(100, 180, 45, 30));
+                break;
+            case HitboxConstants.HitboxName.BigTreeGround:
+                shapes.push(new Rectangle(65, 235, 90, 40));
+                shapes.push(new Rectangle(90, 275, 75, 15));
+                shapes.push(new Rectangle(155, 250, 20, 25));
+                break;
+            case HitboxConstants.HitboxName.SmallTreeGround:
+                shapes.push(new Rectangle(40, 180, 80, 45));
+                break;
+            case HitboxConstants.HitboxName.TreeStumpGround:
+                shapes.push(new Rectangle(25, 70, 90, 40));
+                shapes.push(new Rectangle(50, 110, 75, 15));
+                shapes.push(new Rectangle(115, 85, 20, 25));
+                break;
         }
 
         return new Hitbox(x, y, shapes);
