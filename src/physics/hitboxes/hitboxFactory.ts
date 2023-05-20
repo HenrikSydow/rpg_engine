@@ -47,6 +47,11 @@ export abstract class HitboxFactory {
                 shapes.push(new Rectangle(50, 110, 75, 15));
                 shapes.push(new Rectangle(115, 85, 20, 25));
                 break;
+            case HitboxConstants.HitboxName.BushGround:
+                shapes.push(new Rectangle(10, 95, 140, 45));
+                shapes.push(new Rectangle(25, 140, 110, 10));
+                shapes.push(new Rectangle(25, 85, 110, 10));
+                break;
         }
 
         return new Hitbox(x, y, shapes);

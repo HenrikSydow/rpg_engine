@@ -112,6 +112,10 @@ export abstract class GameObjectFactory {
                     AnimationConstants.AnimationNames.VEGETATION_BUSH,
                     AnimationFactory.buildAnimation(AnimationConstants.AnimationNames.VEGETATION_BUSH)
                 );
+                hitboxHandler.addHitbox(
+                    HitboxConstants.HitboxType.GroundHitbox,
+                    HitboxFactory.buildHitbox(HitboxConstants.HitboxName.BushGround, x, y)
+                );
                 gameObject = new Bush(x, y, animationHandler, hitboxHandler);
                 break;
         }

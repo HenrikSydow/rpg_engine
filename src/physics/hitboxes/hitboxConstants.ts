@@ -15,7 +15,8 @@ export namespace HitboxConstants {
         PlayerGround        = "player_ground",
         BigTreeGround       = "tree_ground",
         SmallTreeGround     = "small_tree_ground",
-        TreeStumpGround     = "tree_stump",
+        TreeStumpGround     = "tree_stump_ground",
+        BushGround          = "bush_ground",
     }
 
     export enum HitboxType {
