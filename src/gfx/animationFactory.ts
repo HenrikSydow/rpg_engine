@@ -69,6 +69,10 @@ export abstract class AnimationFactory {
                 animation = new Animation([GfxRegistry.VEGETATION_TREE_STUMP]);
                 animation.setScale(5);
                 break;
+            case AnimationConstants.AnimationNames.VEGETATION_BUSH:
+                animation = new Animation([GfxRegistry.VEGETATION_BUSH]);
+                animation.setScale(5);
+                break;
         }
 
         return animation;

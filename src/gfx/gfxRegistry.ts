@@ -23,9 +23,11 @@ export abstract class GfxRegistry {
     public static readonly PLAYER_WALK_NORTH_FRAMES:    Array<HTMLImageElement> = GfxRegistry.loadAnimationArray("./res/player/walk/north", FileType.PNG, 6);
     public static readonly PLAYER_WALK_EAST_FRAMES:     Array<HTMLImageElement> = GfxRegistry.loadAnimationArray("./res/player/walk/east",  FileType.PNG, 6);
 
+    // VEGETATION:
     public static readonly VEGETATION_BIG_TREE:         HTMLImageElement = GfxRegistry.loadSingleImage("./res/scenery/vegetation/trees/bigTree.png");
     public static readonly VEGETATION_TREE_STUMP:       HTMLImageElement = GfxRegistry.loadSingleImage("./res/scenery/vegetation/trees/treeStump.png");
     public static readonly VEGETATION_SMALL_TREE:       HTMLImageElement = GfxRegistry.loadSingleImage("./res/scenery/vegetation/trees/smallTree.png");
+    public static readonly VEGETATION_BUSH:             HTMLImageElement = GfxRegistry.loadSingleImage("./res/scenery/vegetation/bush.png");
 
     /**
      * Loads an array of images / frames, which can be used to construct animations.

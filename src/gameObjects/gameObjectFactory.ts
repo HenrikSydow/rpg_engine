@@ -5,6 +5,7 @@ import { HitboxConstants } from "../physics/hitboxes/hitboxConstants.js";
 import { HitboxFactory } from "../physics/hitboxes/hitboxFactory.js";
 import { HitboxHandler } from "../physics/hitboxes/hitboxHandler.js";
 import { Player } from "./customObjects/characters/player.js";
+import { Bush } from "./customObjects/scenery/vegetation/bush.js";
 import { BigTree } from "./customObjects/scenery/vegetation/trees/bigTree.js";
 import { SmallTree } from "./customObjects/scenery/vegetation/trees/smallTree.js";
 import { TreeStump } from "./customObjects/scenery/vegetation/trees/treeStump.js";
@@ -85,6 +86,13 @@ export abstract class GameObjectFactory {
                     AnimationFactory.buildAnimation(AnimationConstants.AnimationNames.VEGETATION_TREE_STUMP)
                 );
                 gameObject = new TreeStump(x, y, animationHandler, hitboxHandler);
+                break;
+            case GameObjectConstants.GameObjectName.Bush:
+                animationHandler.addAnimation(
+                    AnimationConstants.AnimationNames.VEGETATION_BUSH,
+                    AnimationFactory.buildAnimation(AnimationConstants.AnimationNames.VEGETATION_BUSH)
+                );
+                gameObject = new Bush(x, y, animationHandler, hitboxHandler);
                 break;
         }
 

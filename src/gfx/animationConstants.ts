@@ -24,6 +24,7 @@ export namespace AnimationConstants {
         VEGETATION_BIG_TREE     = "vegetation_big_tree",
         VEGETATION_SMALL_TREE   = "vegetation_small_tree",
         VEGETATION_TREE_STUMP   = "vegetation_tree_stump",
+        VEGETATION_BUSH         = "vegetation_bush",
     }
 
 }

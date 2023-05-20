@@ -16,6 +16,7 @@ export namespace GameObjectConstants {
         BigTree     = "bigTree",
         SmallTree   = "smallTree",
         TreeStump   = "treeStump",
+        Bush        = "bush",
     }
 
     export enum FaceDirection {
